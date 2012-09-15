@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{03BE718F-C731-43AB-8715-DEB69445CE6F}</ProjectGuid>
+    <ProjectGuid>{2B059698-B365-4FA2-A686-C8EA43B10194}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Microplate</RootNamespace>
-    <AssemblyName>Microplate</AssemblyName>
+    <RootNamespace>MicroplateSpecs</RootNamespace>
+    <AssemblyName>MicroplateSpecs</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,24 +31,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NSpec">
+      <HintPath>..\packages\nspec.0.9.62\lib\NSpec.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IContent.cs" />
-    <Compile Include="IPlateFormat.cs" />
-    <Compile Include="IPlateType.cs" />
-    <Compile Include="IPositionNaming.cs" />
-    <Compile Include="Plate.cs" />
+    <Compile Include="describe_world.cs" />
+    <Compile Include="DebuggerShim.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Design\Core.cd" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="specwatchr-usage.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\microplate\Microplate.csproj">
+      <Project>{03BE718F-C731-43AB-8715-DEB69445CE6F}</Project>
+      <Name>Microplate</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Plate\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
