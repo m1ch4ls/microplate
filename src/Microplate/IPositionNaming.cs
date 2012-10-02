@@ -10,12 +10,12 @@ namespace Microplate
     {
 
         /// <summary>
-        /// GetPosition postition name for given coords.
+        /// GetPosition position name for given coordinates.
         /// </summary>
         string GetRowName(int row);
 
         /// <summary>
-        /// Convert position name to coords.
+        /// Convert position name to coordinates.
         /// </summary>
         Point GetCoords(string name);
 
