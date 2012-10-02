@@ -6,7 +6,7 @@ using System.Text;
 namespace Microplate.Design
 {
     /// <summary>
-    /// This is just a set of usage examples. It's not meant to be compiled or used for any purpose.
+    /// This is just a set of possible usage examples. It's not meant to be compiled or used for any purpose.
     /// </summary>
     class UsageExamples
     {
@@ -36,7 +36,7 @@ namespace Microplate.Design
         private constructors()
         {
             // too complicated
-            var plate = new Plate(plateType, typeof(content)); // possible 5
+            var plate = new Plate(plateType, typeof(ContentClass)); // possible 5
 
             // can't use generic type for dynamic loading
             var plate = new Plate<ContentType>(plateType); // not possible
