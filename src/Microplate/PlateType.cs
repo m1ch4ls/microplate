@@ -7,25 +7,25 @@ namespace Microplate
 {
     public class PlateType
     {
-        string Name
+        public string Name
         {
             get;
             set;
         }
 
-        PlateFormat Format
+        public PlateFormat Format
         {
             get;
             set;
         }
 
-        string Manufacturer
+        public string Manufacturer
         {
             get;
             set;
         }
 
-        decimal Volume
+        public decimal Volume
         {
             get;
             set;
