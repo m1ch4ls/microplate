@@ -6,3 +6,4 @@ _ReSharper*
 # mstest test results
 TestResults
 *.suo
+*.user
