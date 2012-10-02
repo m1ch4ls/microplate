@@ -61,5 +61,10 @@ namespace Microplate
             get;
             set;
         }
+
+        public bool IsValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

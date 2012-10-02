@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Microplate
 {
-    public class Plate : ICollection<IContent>
+    public class Plate : IEnumerable<IContent>
     {
-        private List<IContent> content;
+        private readonly IContent[] content;
 
         public PlateType Type { get; set; }
 
@@ -18,10 +18,17 @@ namespace Microplate
             {
                 throw new ArgumentException("Must implement IContent interface", "contentType");
             }
+
+            if (type.Format == null || !type.Format.IsValid())
+            {
+                throw new ArgumentException("Must contain valid plate format", "type");
+            }
+
+            content = new IContent[type.Format.Width * type.Format.Height];
         }
 
         /// <summary>
-        /// Indexed by cords.
+        /// Indexed by coordinates.
         /// </summary>
         public IContent this[int row, int col]
         {
@@ -65,7 +72,7 @@ namespace Microplate
         /// <filterpriority>1</filterpriority>
         public IEnumerator<IContent> GetEnumerator()
         {
-            return content.GetEnumerator();
+            return ((IEnumerable<IContent>)content).GetEnumerator();
         }
 
         /// <summary>
@@ -78,17 +85,6 @@ namespace Microplate
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
-        }
-
-        /// <summary>
-        /// Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1"/>.
-        /// </summary>
-        /// <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1"/>.
-        ///                 </param><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
-        ///                 </exception>
-        public void Add(IContent item)
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>
