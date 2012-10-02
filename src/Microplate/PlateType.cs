@@ -1,29 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 
 namespace Microplate
 {
-    public interface IPlateFormat
+    public interface PlateType
     {
-        int Height
+        string Name
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// Default position naming for this format.
-        /// </summary>
-        Microplate.IPositionNaming PositionNaming
+        PlateFormat Format
         {
             get;
             set;
         }
 
-        int Width
+        string Manufacturer
+        {
+            get;
+            set;
+        }
+
+        decimal Volume
         {
             get;
             set;

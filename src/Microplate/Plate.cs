@@ -10,13 +10,18 @@ namespace Microplate
     {
         private List<IContent> content;
 
-        public Plate(IPlateType type)
+        public PlateType Type { get; set; }
+
+        public Plate(PlateType type, Type contentType)
         {
-            
+            if (contentType.GetInterfaces().All(x => x.GetGenericTypeDefinition() != typeof(IContent)))
+            {
+                throw new ArgumentException("Must implement IContent interface", "contentType");
+            }
         }
 
         /// <summary>
-        /// Indexed by coords.
+        /// Indexed by cords.
         /// </summary>
         public IContent this[int row, int col]
         {
