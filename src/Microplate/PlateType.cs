@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Microplate
 {
-    public interface PlateType
+    public class PlateType
     {
         string Name
         {
