@@ -25,6 +25,11 @@ namespace Microplate
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="PlateFormat"/> class.
+        /// </summary>
+        public PlateFormat() { }
+
+        /// <summary>
         /// Gets or sets the width.
         /// </summary>
         /// <value>
