@@ -2,8 +2,6 @@
 bin
 obj
 _ReSharper*
-
-# mstest test results
 TestResults
 *.suo
 *.user
