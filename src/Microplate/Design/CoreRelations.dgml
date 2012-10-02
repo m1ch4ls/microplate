@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph GraphDirection="TopToBottom" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
+    <Node Id="(@1 @2 @11 Member=Manufacturer)" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="Manufacturer" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="(@1 @2 @11 Member=Name)" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="Name" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="(@1 @2 @11 Member=Volume)" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="Volume" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
     <Node Id="(@1 @2 @3 Member=ToControl)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Method" IsDragSource="True" Label="ToControl" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}">
       <Category Ref="Content" />
     </Node>
@@ -10,48 +13,46 @@
     <Node Id="(@1 @2 @3 Member=ToString)" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Method" IsDragSource="True" Label="ToString" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}">
       <Category Ref="Content" />
     </Node>
-    <Node Id="(@1 @2 @5 Member=Height)" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="Height" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="(@1 @2 @5 Member=Width)" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="Width" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="(@1 @2 @7 Member=Manufacturer)" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="Manufacturer" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="(@1 @2 @7 Member=Name)" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="Name" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="(@1 @2 @7 Member=Volume)" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="Volume" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="(@1 @2 @9 Member=(Name=GetColName OverloadingParameters=[(@12 Namespace=System Type=Int32)]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Method" IsDragSource="True" Label="GetColName" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="(@1 @2 @9 Member=(Name=GetCoords OverloadingParameters=[(@12 Namespace=System Type=String)]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Method" IsDragSource="True" Label="GetCoords" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="(@1 @2 @9 Member=(Name=GetRowName OverloadingParameters=[(@12 Namespace=System Type=Int32)]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Method" IsDragSource="True" Label="GetRowName" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="@10" Category="CodeSchema_Interface" CodeSchemaProperty_IsPublic="True" IsDragSource="True" Label="IPositionNaming" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="@11" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" IsDragSource="True" Label="Plate" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="@13" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="Format" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="@14" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="PositionNaming" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="@15" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" IsDragSource="True" Label="Position Access" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}">
+    <Node Id="(@1 @2 @5 Member=(Name=GetColName OverloadingParameters=[(@13 Namespace=System Type=Int32)]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Method" IsDragSource="True" Label="GetColName" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="(@1 @2 @5 Member=(Name=GetCoords OverloadingParameters=[(@13 Namespace=System Type=String)]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Method" IsDragSource="True" Label="GetCoords" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="(@1 @2 @5 Member=(Name=GetRowName OverloadingParameters=[(@13 Namespace=System Type=Int32)]))" Category="CodeSchema_Method" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Method" IsDragSource="True" Label="GetRowName" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="(@1 @2 @7 Member=IsReadOnly)" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="IsReadOnly" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="(@1 @2 @9 Member=Height)" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="Height" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="(@1 @2 @9 Member=PositionNaming)" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="PositionNaming" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="(@1 @2 @9 Member=Width)" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="Width" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="@10" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" IsDragSource="True" IsHub="True" Label="PlateFormat" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="@12" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" IsDragSource="True" IsHub="True" Label="PlateType" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="@14" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="Format" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="@15" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" IsDragSource="True" Label="this" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}">
       <Category Ref="Content" />
     </Node>
     <Node Id="@16" Category="CodeSchema_Property" CodeSchemaProperty_IsPublic="True" FunctionTypeFlags="Property Assignment" IsDragSource="True" Label="Type" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="@4" Category="CodeSchema_Interface" CodeSchemaProperty_IsPublic="True" IsDragSource="True" Label="IContent" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}">
+    <Node Id="@4" Category="CodeSchema_Interface" CodeSchemaProperty_IsPublic="True" IsDragSource="True" IsHub="True" Label="IContent" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}">
       <Category Ref="Content" />
     </Node>
-    <Node Id="@6" Category="CodeSchema_Interface" CodeSchemaProperty_IsPublic="True" IsDragSource="True" Label="IPlateFormat" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
-    <Node Id="@8" Category="CodeSchema_Interface" CodeSchemaProperty_IsPublic="True" IsDragSource="True" Label="IPlateType" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="@6" Category="CodeSchema_Interface" CodeSchemaProperty_IsPublic="True" IsDragSource="True" IsHub="True" Label="IPositionNaming" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
+    <Node Id="@8" Category="CodeSchema_Class" CodeSchemaProperty_IsPublic="True" IsDragSource="True" IsHub="True" Label="Plate" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" />
   </Nodes>
   <Links>
-    <Link Source="@10" Target="(@1 @2 @9 Member=(Name=GetColName OverloadingParameters=[(@12 Namespace=System Type=Int32)]))" Category="Contains" />
-    <Link Source="@10" Target="(@1 @2 @9 Member=(Name=GetCoords OverloadingParameters=[(@12 Namespace=System Type=String)]))" Category="Contains" />
-    <Link Source="@10" Target="(@1 @2 @9 Member=(Name=GetRowName OverloadingParameters=[(@12 Namespace=System Type=Int32)]))" Category="Contains" />
-    <Link Source="@11" Target="@15" Category="Contains" />
-    <Link Source="@11" Target="@16" Category="Contains" />
-    <Link Source="@13" Target="@6" Category="References" />
+    <Link Source="@10" Target="(@1 @2 @9 Member=Height)" Category="Contains" />
+    <Link Source="@10" Target="(@1 @2 @9 Member=PositionNaming)" Category="Contains" />
+    <Link Source="@10" Target="(@1 @2 @9 Member=Width)" Category="Contains" />
+    <Link Source="@12" Target="(@1 @2 @11 Member=Manufacturer)" Category="Contains" />
+    <Link Source="@12" Target="(@1 @2 @11 Member=Name)" Category="Contains" />
+    <Link Source="@12" Target="(@1 @2 @11 Member=Volume)" Category="Contains" />
+    <Link Source="@12" Target="@14" Category="Contains" />
     <Link Source="@14" Target="@10" Category="References" />
     <Link Source="@15" Target="@4" Category="References" />
-    <Link Source="@16" Target="@8" Category="References" />
+    <Link Source="@16" Target="@12" Category="References" />
     <Link Source="@4" Target="(@1 @2 @3 Member=ToControl)" Category="Contains" />
     <Link Source="@4" Target="(@1 @2 @3 Member=ToImage)" Category="Contains" />
     <Link Source="@4" Target="(@1 @2 @3 Member=ToString)" Category="Contains" />
-    <Link Source="@6" Target="(@1 @2 @5 Member=Height)" Category="Contains" />
-    <Link Source="@6" Target="(@1 @2 @5 Member=Width)" Category="Contains" />
-    <Link Source="@6" Target="@14" Category="Contains" />
-    <Link Source="@8" Target="(@1 @2 @7 Member=Manufacturer)" Category="Contains" />
-    <Link Source="@8" Target="(@1 @2 @7 Member=Name)" Category="Contains" />
-    <Link Source="@8" Target="(@1 @2 @7 Member=Volume)" Category="Contains" />
-    <Link Source="@8" Target="@13" Category="Contains" />
+    <Link Source="@6" Target="(@1 @2 @5 Member=(Name=GetColName OverloadingParameters=[(@13 Namespace=System Type=Int32)]))" Category="Contains" />
+    <Link Source="@6" Target="(@1 @2 @5 Member=(Name=GetCoords OverloadingParameters=[(@13 Namespace=System Type=String)]))" Category="Contains" />
+    <Link Source="@6" Target="(@1 @2 @5 Member=(Name=GetRowName OverloadingParameters=[(@13 Namespace=System Type=Int32)]))" Category="Contains" />
+    <Link Source="@8" Target="(@1 @2 @7 Member=IsReadOnly)" Category="Contains" />
+    <Link Source="@8" Target="@15" Category="Contains" />
+    <Link Source="@8" Target="@16" Category="Contains" />
   </Links>
   <Categories>
     <Category Id="CodeSchema_Block" Label="Block" BasedOn="CodeSchema_Statement" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" IsProviderRoot="False" NavigationActionLabel="Blocks" />
@@ -77,6 +78,7 @@
     <Property Id="IncomingActionLabel" Label="IncomingActionLabel" Description="IncomingActionLabel" DataType="System.String" />
     <Property Id="IsContainment" DataType="System.Boolean" />
     <Property Id="IsDragSource" Label="IsDragSource" Description="IsDragSource" DataType="System.Boolean" />
+    <Property Id="IsHub" Label="Hub" Description="Node is in the top 25% of highly connected nodes.  Other nodes not directly connecting these hubs have been hidden to simplify the graph." DataType="System.Boolean" />
     <Property Id="IsProviderRoot" Label="IsProviderRoot" Description="IsProviderRoot" DataType="System.Boolean" />
     <Property Id="IsTag" DataType="System.Boolean" />
     <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
@@ -94,6 +96,20 @@
     <Name Id="Type" Label="Type" ValueType="System.Object" />
   </QualifiedNames>
   <Styles>
+    <Style TargetType="Node" GroupLabel="Hub" ToolTip="Node is in the top 25% of highly connected nodes.  Other nodes not directly connecting these hubs have been hidden to simplify the graph." ValueLabel="True">
+      <Condition Expression="IsHub" />
+      <Setter Property="Background" Value="#FF008080" />
+    </Style>
+    <Style TargetType="Node" GroupLabel="Strongly Connected" ToolTip="Node is part of a strongly coupled component" ValueLabel="Nodes">
+      <Condition Expression="IsStronglyConnected" />
+      <Setter Property="Stroke" Value="#D02030" />
+      <Setter Property="StrokeThickness" Value="2" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Strongly Connected" ToolTip="Node is part of a strongly coupled component" ValueLabel="Links">
+      <Condition Expression="IsCircularLink" />
+      <Setter Property="Stroke" Value="#D02030" />
+      <Setter Property="StrokeThickness" Value="2" />
+    </Style>
     <Style TargetType="Node" GroupLabel="Interface" ValueLabel="True">
       <Condition Expression="HasCategory('CodeSchema_Interface')" />
       <Setter Property="Background" Value="#FF0080FF" />
@@ -118,21 +134,23 @@
     <Alias n="2" Id="Namespace=Microplate" />
     <Alias n="3" Id="Type=IContent" />
     <Alias n="4" Id="(@1 @2 @3)" />
-    <Alias n="5" Id="Type=IPlateFormat" />
+    <Alias n="5" Id="Type=IPositionNaming" />
     <Alias n="6" Id="(@1 @2 @5)" />
-    <Alias n="7" Id="Type=IPlateType" />
+    <Alias n="7" Id="Type=Plate" />
     <Alias n="8" Id="(@1 @2 @7)" />
-    <Alias n="9" Id="Type=IPositionNaming" />
+    <Alias n="9" Id="Type=PlateFormat" />
     <Alias n="10" Id="(@1 @2 @9)" />
-    <Alias n="11" Id="(@1 @2 Type=Plate)" />
-    <Alias n="12" Uri="Assembly=$(FxRootUri)/v2.0.50727/mscorlib.dll" />
-    <Alias n="13" Id="(@1 @2 @7 Member=Format)" />
-    <Alias n="14" Id="(@1 @2 @5 Member=PositionNaming)" />
-    <Alias n="15" Id="(@1 @2 Type=Plate Member=this)" />
-    <Alias n="16" Id="(@1 @2 Type=Plate Member=Type)" />
+    <Alias n="11" Id="Type=PlateType" />
+    <Alias n="12" Id="(@1 @2 @11)" />
+    <Alias n="13" Uri="Assembly=$(FxRootUri)/v2.0.50727/mscorlib.dll" />
+    <Alias n="14" Id="(@1 @2 @11 Member=Format)" />
+    <Alias n="15" Id="(@1 @2 @7 Member=this)" />
+    <Alias n="16" Id="(@1 @2 @7 Member=Type)" />
   </IdentifierAliases>
   <Paths>
-    <Path Id="03be718f-c731-43ab-8715-deb69445ce6f.OutputPathUri" Value="file:///W:/src/microplate/Microplate/bin/Debug/Microplate.dll" />
+    <Path Id="03be718f-c731-43ab-8715-deb69445ce6f.OutputPath" Value="W:\src\microplate\src\microplate\bin\Debug\Microplate.dll" />
+    <Path Id="03be718f-c731-43ab-8715-deb69445ce6f.OutputPathUri" Value="file:///W:/src/microplate/src/microplate/bin/Debug/Microplate.dll" />
+    <Path Id="FxRoot" Value="C:\Windows\Microsoft.NET\Framework" />
     <Path Id="FxRootUri" Value="file:///C:/Windows/Microsoft.NET/Framework" />
   </Paths>
 </DirectedGraph>
