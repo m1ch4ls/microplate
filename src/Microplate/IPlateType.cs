@@ -5,27 +5,27 @@ using System.Text;
 
 namespace Microplate
 {
-    public class PlateType
+    public interface IPlateType
     {
-        public string Name
+        string Name
         {
             get;
             set;
         }
 
-        public PlateFormat Format
+        PlateFormat Format
         {
             get;
             set;
         }
 
-        public string Manufacturer
+        string Manufacturer
         {
             get;
             set;
         }
 
-        public decimal Volume
+        decimal Volume
         {
             get;
             set;

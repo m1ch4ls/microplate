@@ -10,9 +10,9 @@ namespace Microplate
     {
         private readonly IContent[] content;
 
-        public PlateType Type { get; set; }
+        public IPlateType Type { get; set; }
 
-        public Plate(PlateType type, Type contentType)
+        public Plate(IPlateType type, Type contentType)
         {
             if (contentType.GetInterfaces().All(x => x.GetGenericTypeDefinition() != typeof(IContent)))
             {
