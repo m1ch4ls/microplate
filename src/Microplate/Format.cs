@@ -7,17 +7,17 @@ using System.Text;
 namespace Microplate
 {
     /// <summary>
-    /// Container for plate format parameters. Used in <see cref="PlateFormat"/>.
+    /// Container for plate format parameters. Used in <see cref="Format"/>.
     /// </summary>
-    public class PlateFormat
+    public class Format
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlateFormat"/> class.
+        /// Initializes a new instance of the <see cref="Format"/> class.
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="defaultNaming">The default position naming naming.</param>
-        public PlateFormat(int width, int height, IPositionNaming defaultNaming)
+        public Format(int width, int height, IPositionNaming defaultNaming)
         {
             this.Width = width;
             this.Height = height;
@@ -25,9 +25,9 @@ namespace Microplate
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlateFormat"/> class.
+        /// Initializes a new instance of the <see cref="Format"/> class.
         /// </summary>
-        public PlateFormat() { }
+        public Format() { }
 
         /// <summary>
         /// Gets or sets the width.

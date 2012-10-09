@@ -13,7 +13,7 @@ namespace Microplate
             set;
         }
 
-        PlateFormat Format
+        Format Format
         {
             get;
             set;
