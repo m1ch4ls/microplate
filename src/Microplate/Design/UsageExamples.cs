@@ -14,7 +14,7 @@ namespace Microplate.Design
          * What do I want to do with the Plate?
          */
 
-        private Example1()
+        private void Example1()
         {
             var plate = new Plate();
 
@@ -26,14 +26,14 @@ namespace Microplate.Design
             plate[123].ToString(); // access position by integer
             plate[12, 34].ToString(); // access by cords
             plate["A12"].ToString(); // alphanumeric access
-            plate["A", 12].ToString(); // cords like alphanumeric access
+            plate["A", 12].ToString(); // coords like alphanumeric access
 
             plate.ToString(); // I want to get formatted ASCII table
             plate.ToImage(); // a picture; TODO: think about format, something simple, 
                              // preferably windows compatible vector format
         }
 
-        private constructors()
+        private void constructors()
         {
             // too complicated
             var plate = new Plate(plateType, typeof(ContentClass)); // possible 5
@@ -42,7 +42,7 @@ namespace Microplate.Design
             var plate = new Plate<ContentType>(plateType); // not possible
         }
 
-        private foo()
+        private void foo()
         {
             // lets have a plate
             var plate = new Plate();
@@ -50,7 +50,7 @@ namespace Microplate.Design
             plate.Serialize(); // think about serialization - binary or xml?
         }
 
-        private Example2()
+        private void Example2()
         {
             // TODO: think more about file format, file extension etc...
             Plate plate = Plate.FromFile(@"Some\file\somewhere\here.plt");
