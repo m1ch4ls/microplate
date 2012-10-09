@@ -17,11 +17,13 @@ namespace Microplate
         /// <param name="height">The height.</param>
         /// <param name="width">The width.</param>
         /// <param name="defaultNaming">The default position naming naming.</param>
-        public Format(int height, int width, IPositionNaming defaultNaming)
+        /// <param name="name">Optional name of the format</param>
+        public Format(int height, int width, IPositionNaming defaultNaming, string name = "")
         {
             Height = height;
             Width = width;
             PositionNaming = defaultNaming;
+            Name = name;
         }
 
         /// <summary>
@@ -39,6 +41,11 @@ namespace Microplate
         /// Default position naming for this format.
         /// </summary>
         public IPositionNaming PositionNaming;
+
+        /// <summary>
+        /// Optional name of the format
+        /// </summary>
+        public string Name;
 
         public bool IsValid()
         {

@@ -17,12 +17,12 @@ namespace Microplate
         /// </summary>
         public static readonly Dictionary<string, Format> Defined = new Dictionary<string, Format>()
                                                               {
-                                                                  {"96-well", new Format(8, 12, PositionNamings.Default)},
-                                                                  {"384-well", new Format(16, 24, PositionNamings.Default)},
+                                                                  {"96-well", new Format(8, 12, PositionNamings.Default, "96-well")},
+                                                                  {"384-well", new Format(16, 24, PositionNamings.Default, "384-well")},
                                                               };
         public static Format SingleTubes(int n)
         {
-            return new Format(1, n, PositionNamings.Default);
+            return new Format(1, n, PositionNamings.Default, String.Format("Single tubes ({0})", n));
         }
     }
 }
