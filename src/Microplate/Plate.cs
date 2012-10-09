@@ -19,7 +19,7 @@ namespace Microplate
                 throw new ArgumentException("Must implement IContent interface", "contentType");
             }
 
-            if (type.Format == null || !type.Format.IsValid())
+            if (!type.Format.IsValid())
             {
                 throw new ArgumentException("Must contain valid plate format", "type");
             }

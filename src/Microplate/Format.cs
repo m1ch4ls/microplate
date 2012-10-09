@@ -9,58 +9,36 @@ namespace Microplate
     /// <summary>
     /// Container for plate format parameters. Used in <see cref="Format"/>.
     /// </summary>
-    public class Format
+    public struct Format
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Format"/> class.
+        /// Initializes a new instance of the <see cref="Format"/> struct.
         /// </summary>
         /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
         /// <param name="defaultNaming">The default position naming naming.</param>
         public Format(int width, int height, IPositionNaming defaultNaming)
         {
-            this.Width = width;
-            this.Height = height;
-            this.PositionNaming = defaultNaming;
+            Width = width;
+            Height = height;
+            PositionNaming = defaultNaming;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Format"/> class.
+        /// Width of the plate using this format.
         /// </summary>
-        public Format() { }
+        public int Width;
+
 
         /// <summary>
-        /// Gets or sets the width.
+        /// Height of the plate using this format.
         /// </summary>
-        /// <value>
-        /// The width.
-        /// </value>
-        public int Width
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Gets or sets the height.
-        /// </summary>
-        /// <value>
-        /// The height.
-        /// </value>
-        public int Height
-        {
-            get;
-            set;
-        }
+        public int Height;
 
         /// <summary>
         /// Default position naming for this format.
         /// </summary>
-        public IPositionNaming PositionNaming
-        {
-            get;
-            set;
-        }
+        public IPositionNaming PositionNaming;
 
         public bool IsValid()
         {

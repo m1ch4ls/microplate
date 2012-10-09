@@ -41,10 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Formats.cs" />
+    <Compile Include="Namings\AlphaNumericCoords.cs" />
+    <Compile Include="Namings\AlphaNumericDirect.cs" />
+    <Compile Include="Namings\NumericCoords.cs" />
+    <Compile Include="Namings\NumericDirect.cs" />
+    <Compile Include="PositionNamings.cs" />
     <Compile Include="Types\DefaultType.cs" />
     <None Include="Design\UsageExamples.cs" />
     <Compile Include="IContent.cs" />
-    <Compile Include="PlateFormat.cs" />
+    <Compile Include="Format.cs" />
     <Compile Include="IPlateType.cs" />
     <Compile Include="IPositionNaming.cs" />
     <Compile Include="Plate.cs" />
