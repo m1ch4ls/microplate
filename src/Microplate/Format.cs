@@ -14,13 +14,13 @@ namespace Microplate
         /// <summary>
         /// Initializes a new instance of the <see cref="Format"/> struct.
         /// </summary>
-        /// <param name="width">The width.</param>
         /// <param name="height">The height.</param>
+        /// <param name="width">The width.</param>
         /// <param name="defaultNaming">The default position naming naming.</param>
-        public Format(int width, int height, IPositionNaming defaultNaming)
+        public Format(int height, int width, IPositionNaming defaultNaming)
         {
-            Width = width;
             Height = height;
+            Width = width;
             PositionNaming = defaultNaming;
         }
 
