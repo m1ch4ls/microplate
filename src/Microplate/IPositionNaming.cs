@@ -21,13 +21,6 @@ namespace Microplate
         string GetRowName(int row);
 
         /// <summary>
-        /// Convert position name to coordinates.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns><see cref="Point"/> of given coordinates</returns>
-        Point GetCoords(string name);
-
-        /// <summary>
         /// Column name for given position naming.
         /// </summary>
         /// <param name="col">Internal column index starting with 0.</param>
@@ -35,5 +28,12 @@ namespace Microplate
         /// Column name string
         /// </returns>
         string GetColName(int col);
+
+        /// <summary>
+        /// Convert position name to coordinates.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns><see cref="Point"/> of given coordinates</returns>
+        Point GetCoords(string name);
     }
 }
