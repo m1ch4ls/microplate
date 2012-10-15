@@ -16,7 +16,7 @@ namespace Microplate
         {
             if (contentType.GetInterfaces().All(x => x.GetGenericTypeDefinition() != typeof(IData)))
             {
-                throw new ArgumentException("Must implement IContent interface", "contentType");
+                throw new ArgumentException("Must implement IData interface", "contentType");
             }
 
             if (!type.Format.IsValid())
