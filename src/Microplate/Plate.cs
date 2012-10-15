@@ -10,7 +10,23 @@ namespace Microplate
     {
         private readonly IData[] content;
 
-        public IPlateType Type { get; set; }
+        /// <summary>
+        /// Proxy to <see cref="Format.Width"/>
+        /// </summary>
+        public int Width
+        {
+            get { return Type.Format.Width; }
+        }
+
+        /// <summary>
+        /// Proxy to <see cref="Format.Height"/>
+        /// </summary>
+        public int Height
+        {
+            get { return Type.Format.Height; }
+        }
+
+        public IPlateType Type { get; private set; }
 
         public Plate(IPlateType type, Type contentType)
         {
