@@ -26,7 +26,31 @@ namespace Microplate
             get { return Type.Format.Height; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Plate"/> is locked.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if locked; otherwise, <c>false</c>.
+        /// </value>
+        public bool Locked { get; set; }
+
+        private StateRecord currentState;
+        /// <summary>
+        /// Gets the current state of this <see cref="Plate"/>.
+        /// </summary>
+        /// <value>
+        /// <see cref="StateRecord"/>
+        /// </value>
+        public StateRecord CurrentState
+        {
+            get { return currentState ?? (currentState = new StateRecord()); }
+        }
+
         public IPlateType Type { get; private set; }
+
+        public DateTime Created { get; set; }
+
+        public DateTime LastChanged { get; set; }
 
         public Plate(IPlateType type, Type contentType)
         {
@@ -41,6 +65,8 @@ namespace Microplate
             }
 
             content = new IData[type.Format.Width * type.Format.Height];
+
+            Created = LastChanged = DateTime.Now;
         }
 
         /// <summary>
@@ -102,5 +128,7 @@ namespace Microplate
         {
             return GetEnumerator();
         }
+
+
     }
 }
