@@ -6,15 +6,15 @@ using System.Text;
 
 namespace Microplate
 {
-    public class Plate : IEnumerable<IContent>
+    public class Plate : IEnumerable<IData>
     {
-        private readonly IContent[] content;
+        private readonly IData[] content;
 
         public IPlateType Type { get; set; }
 
         public Plate(IPlateType type, Type contentType)
         {
-            if (contentType.GetInterfaces().All(x => x.GetGenericTypeDefinition() != typeof(IContent)))
+            if (contentType.GetInterfaces().All(x => x.GetGenericTypeDefinition() != typeof(IData)))
             {
                 throw new ArgumentException("Must implement IContent interface", "contentType");
             }
@@ -24,13 +24,13 @@ namespace Microplate
                 throw new ArgumentException("Must contain valid plate format", "type");
             }
 
-            content = new IContent[type.Format.Width * type.Format.Height];
+            content = new IData[type.Format.Width * type.Format.Height];
         }
 
         /// <summary>
         /// Indexed by coordinates.
         /// </summary>
-        public IContent this[int row, int col]
+        public IData this[int row, int col]
         {
             get { throw new NotImplementedException(); }
             set { throw new NotImplementedException(); }
@@ -39,7 +39,7 @@ namespace Microplate
         /// <summary>
         /// Indexed by alphanumeric position.
         /// </summary>
-        public IContent this[string pos]
+        public IData this[string pos]
         {
             get { throw new NotImplementedException(); }
             set { throw new NotImplementedException(); }
@@ -48,7 +48,7 @@ namespace Microplate
         /// <summary>
         /// Indexed by numeric position.
         /// </summary>
-        public IContent this[int pos]
+        public IData this[int pos]
         {
             get { throw new NotImplementedException(); }
             set { throw new NotImplementedException(); }
@@ -57,7 +57,7 @@ namespace Microplate
         /// <summary>
         /// Mixed indexing, by letter and number.
         /// </summary>
-        public IContent this[string row, int col]
+        public IData this[string row, int col]
         {
             get { throw new NotImplementedException(); }
             set { throw new NotImplementedException(); }
@@ -70,9 +70,9 @@ namespace Microplate
         /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
         /// </returns>
         /// <filterpriority>1</filterpriority>
-        public IEnumerator<IContent> GetEnumerator()
+        public IEnumerator<IData> GetEnumerator()
         {
-            return ((IEnumerable<IContent>)content).GetEnumerator();
+            return ((IEnumerable<IData>)content).GetEnumerator();
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Microplate
         /// </returns>
         /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1"/>.
         ///                 </param>
-        public bool Contains(IContent item)
+        public bool Contains(IData item)
         {
             throw new NotImplementedException();
         }
@@ -119,7 +119,7 @@ namespace Microplate
         /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
         ///                 </param><exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.
         ///                 </exception>
-        public bool Remove(IContent item)
+        public bool Remove(IData item)
         {
             throw new NotImplementedException();
         }

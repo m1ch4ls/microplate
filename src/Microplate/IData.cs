@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Microplate
 {
-    public interface IContent
+    public interface IData
     {
         string ToString();
 
