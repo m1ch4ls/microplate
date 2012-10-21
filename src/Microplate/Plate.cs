@@ -52,11 +52,11 @@ namespace Microplate
 
         public DateTime LastChanged { get; set; }
 
-        public Plate(IPlateType type, Type contentType)
+        public Plate(IPlateType type, Type dataType)
         {
-            if (contentType.GetInterfaces().All(x => x.GetGenericTypeDefinition() != typeof(IData)))
+            if (dataType.GetInterfaces().All(x => x != typeof(IData)))
             {
-                throw new ArgumentException("Must implement IData interface", "contentType");
+                throw new ArgumentException("Must implement IData interface", "dataType");
             }
 
             if (!type.Format.IsValid())
@@ -67,6 +67,8 @@ namespace Microplate
             content = new IData[type.Format.Width * type.Format.Height];
 
             Created = LastChanged = DateTime.Now;
+
+            Type = type;
         }
 
         /// <summary>
