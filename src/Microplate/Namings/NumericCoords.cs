@@ -19,7 +19,7 @@ namespace Microplate.Namings
         /// <returns>
         /// Row name string.
         /// </returns>
-        public string GetRowName(int row, Format format)
+        public virtual string GetRowName(int row, Format format)
         {
             return row <= 0
                        ? "1"
@@ -36,7 +36,7 @@ namespace Microplate.Namings
         /// <returns>
         /// Column name string
         /// </returns>
-        public string GetColName(int col, Format format)
+        public virtual string GetColName(int col, Format format)
         {
             return col <= 0
                        ? "1"
@@ -58,7 +58,7 @@ namespace Microplate.Namings
         /// <param name="name">The name.</param>
         /// <param name="format">Arbitrary format of the <see cref="Plate"/></param>
         /// <returns><see cref="Point"/> of given coordinates</returns>
-        public Point GetCoords(string name, Format format)
+        public virtual Point GetCoords(string name, Format format)
         {
             var point = new Point(0, 0);
             var matches = coords.Matches(name.Trim());
