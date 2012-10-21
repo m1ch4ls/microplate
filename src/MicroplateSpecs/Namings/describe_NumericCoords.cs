@@ -39,8 +39,6 @@ namespace MicroplateSpecs.Namings
             it["row -123 should be 1"] = () => naming.GetRowName(-123, format).should_be("1");
             it["column -1 should be 1"] = () => naming.GetColName(-1, format).should_be("1");
             it["column -413 should be 1"] = () => naming.GetColName(-413, format).should_be("1");
-
-
         }
 
         void given_position_name()

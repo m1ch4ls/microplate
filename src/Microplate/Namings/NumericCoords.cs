@@ -24,7 +24,7 @@ namespace Microplate.Namings
             return row <= 0
                        ? "1"
                        : row >= format.Height
-                             ? format.Height.ToString(CultureInfo.InvariantCulture)
+                             ? (format.Height - 1).ToString(CultureInfo.InvariantCulture)
                              : (row + 1).ToString(CultureInfo.InvariantCulture);
         }
 
@@ -41,7 +41,7 @@ namespace Microplate.Namings
             return col <= 0
                        ? "1"
                        : col >= format.Width
-                             ? format.Width.ToString(CultureInfo.InvariantCulture)
+                             ? (format.Width - 1).ToString(CultureInfo.InvariantCulture)
                              : (col + 1).ToString(CultureInfo.InvariantCulture);
         }
 
@@ -72,9 +72,9 @@ namespace Microplate.Namings
                     int.TryParse(groups[2].Value, out y);
 
                     if (x > 0)
-                        point.X = x < format.Height ? x - 1 : format.Height - 1;
+                        point.X = x < format.Height ? x - 1 : (format.Height - 1);
                     if (y > 0)
-                        point.Y = y < format.Width ? y - 1 : format.Width - 1;
+                        point.Y = y < format.Width ? y - 1 : (format.Width - 1);
                     break;
                 }
             }
