@@ -13,6 +13,8 @@ namespace Microplate
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Format"/> struct.
+        /// 
+        /// Note: Number of rows <see cref="Height"/> is the first parameter.
         /// </summary>
         /// <param name="height">The height.</param>
         /// <param name="width">The width.</param>
