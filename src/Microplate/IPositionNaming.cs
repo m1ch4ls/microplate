@@ -15,25 +15,28 @@ namespace Microplate
         /// Row name for given position naming.
         /// </summary>
         /// <param name="row">Internal row index starting with 0.</param>
+        /// <param name="format">A current format</param>
         /// <returns>
         /// Row name string.
         /// </returns>
-        string GetRowName(int row);
+        string GetRowName(int row, Format format);
 
         /// <summary>
         /// Column name for given position naming.
         /// </summary>
         /// <param name="col">Internal column index starting with 0.</param>
+        /// <param name="format">A current format</param>
         /// <returns>
         /// Column name string
         /// </returns>
-        string GetColName(int col);
+        string GetColName(int col, Format format);
 
         /// <summary>
         /// Convert position name to coordinates.
         /// </summary>
         /// <param name="name">The name.</param>
+        /// <param name="format">A current format</param>
         /// <returns><see cref="Point"/> of given coordinates</returns>
-        Point GetCoords(string name);
+        Point GetCoords(string name, Format format);
     }
 }

@@ -18,7 +18,7 @@ namespace Microplate.Namings
         /// <returns>
         /// Row name string.
         /// </returns>
-        public string GetRowName(int row)
+        public string GetRowName(int row, Format format)
         {
             return row <= 0 ? "1" : (row + 1).ToString(CultureInfo.InvariantCulture);
         }
@@ -30,7 +30,7 @@ namespace Microplate.Namings
         /// <returns>
         /// Column name string
         /// </returns>
-        public string GetColName(int col)
+        public string GetColName(int col, Format format)
         {
             return col <= 0 ? "1" : (col + 1).ToString(CultureInfo.InvariantCulture);
         }
@@ -47,7 +47,7 @@ namespace Microplate.Namings
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns><see cref="Point"/> of given coordinates</returns>
-        public Point GetCoords(string name)
+        public Point GetCoords(string name, Format format)
         {
             var point = new Point(0, 0);
             var matches = coords.Matches(name.Trim());
