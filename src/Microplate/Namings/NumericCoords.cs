@@ -15,24 +15,34 @@ namespace Microplate.Namings
         /// Row name index starting with 1. Returns 1 for all negative integers.
         /// </summary>
         /// <param name="row">Internal row index starting with 0.</param>
+        /// <param name="format">Arbitrary format of the <see cref="Plate"/></param>
         /// <returns>
         /// Row name string.
         /// </returns>
         public string GetRowName(int row, Format format)
         {
-            return row <= 0 ? "1" : (row + 1).ToString(CultureInfo.InvariantCulture);
+            return row <= 0
+                       ? "1"
+                       : row >= format.Height
+                             ? format.Height.ToString(CultureInfo.InvariantCulture)
+                             : (row + 1).ToString(CultureInfo.InvariantCulture);
         }
 
         /// <summary>
         /// Column name for given position naming.
         /// </summary>
         /// <param name="col">Internal column index starting with 0.</param>
+        /// <param name="format">Arbitrary format of the <see cref="Plate"/></param>
         /// <returns>
         /// Column name string
         /// </returns>
         public string GetColName(int col, Format format)
         {
-            return col <= 0 ? "1" : (col + 1).ToString(CultureInfo.InvariantCulture);
+            return col <= 0
+                       ? "1"
+                       : col >= format.Width
+                             ? format.Width.ToString(CultureInfo.InvariantCulture)
+                             : (col + 1).ToString(CultureInfo.InvariantCulture);
         }
 
         readonly Regex coords = new Regex(@"^(\d+)[, ]+(\d+)$", RegexOptions.Compiled | RegexOptions.Singleline);
@@ -46,6 +56,7 @@ namespace Microplate.Namings
         /// "2 5" -> Point(1,4)
         /// </summary>
         /// <param name="name">The name.</param>
+        /// <param name="format">Arbitrary format of the <see cref="Plate"/></param>
         /// <returns><see cref="Point"/> of given coordinates</returns>
         public Point GetCoords(string name, Format format)
         {
@@ -61,9 +72,9 @@ namespace Microplate.Namings
                     int.TryParse(groups[2].Value, out y);
 
                     if (x > 0)
-                        point.X = x - 1;
+                        point.X = x < format.Height ? x - 1 : format.Height - 1;
                     if (y > 0)
-                        point.Y = y - 1;
+                        point.Y = y < format.Width ? y - 1 : format.Width - 1;
                     break;
                 }
             }
