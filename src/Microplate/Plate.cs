@@ -54,12 +54,12 @@ namespace Microplate
 
         public Plate(IPlateType type, Type dataType)
         {
-            if (dataType.GetInterfaces().All(x => x != typeof(IData)))
+            if (dataType.GetInterfaces().Length == 0 || dataType.GetInterfaces().All(x => x != typeof(IData)))
             {
                 throw new ArgumentException("Must implement IData interface", "dataType");
             }
 
-            if (!type.Format.IsValid())
+            if (type == null || !type.Format.IsValid())
             {
                 throw new ArgumentException("Must contain valid plate format", "type");
             }

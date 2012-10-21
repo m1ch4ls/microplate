@@ -34,6 +34,11 @@ namespace MicroplateSpecs
             }
         }
 
+        class Dummy
+        {
+             
+        }
+
         void when_initializing_new_plate_with_a_valid_type()
         {
             var typeMock = new Mock<IPlateType>();
@@ -45,6 +50,28 @@ namespace MicroplateSpecs
             it["format exists"] = () => plate.Type.Format.should_not_be_null();
             it["width should be 12"] = () => plate.Width.should_be(12);
             it["height should be 8"] = () => plate.Height.should_be(8);
+        }
+
+
+        private Mock<IPlateType> failMock;
+
+        void when_the_parameters_are_wrong()
+        {
+            before = () => failMock = new Mock<IPlateType>();
+
+            it["given null type"] = expect<ArgumentException>(() => new Plate(null, typeof (SomeData)));
+
+            context["given invalid format"] = () =>
+            {
+                failMock.SetupGet(format => format.Format).Returns(new Format(0, 0, PositionNamings.Default));
+                it["should complain on format"] = expect<ArgumentException>(() => new Plate(failMock.Object, typeof(SomeData)));
+            };
+
+            context["given invalid data type"] = () =>
+            {
+                failMock.SetupGet(format => format.Format).Returns(new Format(1, 1, PositionNamings.Default));
+                it["should complain on data type"] = expect<ArgumentException>(() => new Plate(failMock.Object, typeof(Dummy)));
+            };
         }
     }
 }
