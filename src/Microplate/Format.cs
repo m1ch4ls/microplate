@@ -49,7 +49,7 @@ namespace Microplate
 
         public bool IsValid()
         {
-            throw new NotImplementedException();
+            return Height > 0 && Width > 0;
         }
     }
 }
