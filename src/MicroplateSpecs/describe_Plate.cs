@@ -63,13 +63,13 @@ namespace MicroplateSpecs
 
             context["given invalid format"] = () =>
             {
-                failMock.SetupGet(format => format.Format).Returns(new Format(0, 0, PositionNamings.Default));
+                act = () => failMock.SetupGet(format => format.Format).Returns(new Format(0, 0, PositionNamings.Default));
                 it["should complain on format"] = expect<ArgumentException>(() => new Plate(failMock.Object, typeof(SomeData)));
             };
 
             context["given invalid data type"] = () =>
             {
-                failMock.SetupGet(format => format.Format).Returns(new Format(1, 1, PositionNamings.Default));
+                act = () => failMock.SetupGet(format => format.Format).Returns(new Format(1, 1, PositionNamings.Default));
                 it["should complain on data type"] = expect<ArgumentException>(() => new Plate(failMock.Object, typeof(Dummy)));
             };
         }
