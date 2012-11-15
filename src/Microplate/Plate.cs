@@ -188,7 +188,7 @@ namespace Microplate
                 return new Plate<T>(plate);
             }
 
-            throw new ArgumentException("Plate type provided doesn't match plate type required", "plate");
+            throw new ArgumentException("Plate DataType provided doesn't match plate DataType required", "plate");
         }
     }
 
