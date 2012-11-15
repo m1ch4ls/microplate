@@ -9,7 +9,7 @@ using System.Collections;
 
 // by Patrick Boom
 // from http://www.codeproject.com/Articles/15639/XMLFormatter-provider-for-serialization
-namespace Microplate.Utils
+namespace Microplate.Serialization
 {
     /// <summary>
     /// The <see cref="XmlFormatter"/> class implements a custom XmlFormatter
