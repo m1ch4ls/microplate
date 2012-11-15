@@ -9,13 +9,13 @@ namespace Microplate
 {
     public static class PositionNamings
     {
-        public static readonly IPositionNaming NumericCoords = new NumericCoords();
+        public static readonly NumericCoords NumericCoords = new NumericCoords();
 
-        public static readonly IPositionNaming AlphaNumericCoords = new AlphaNumericCoords();
+        public static readonly AlphaNumericCoords AlphaNumericCoords = new AlphaNumericCoords();
 
-        public static readonly IPositionNaming NumericDirect = new NumericDirect();
+        public static readonly NumericDirect NumericDirect = new NumericDirect();
 
-        public static readonly IPositionNaming AlphaNumericDirect = new AlphaNumericDirect();
+        public static readonly AlphaNumericDirect AlphaNumericDirect = new AlphaNumericDirect();
 
         public static IPositionNaming Default { get { return NumericCoords; } }
     }

@@ -25,7 +25,7 @@ namespace Microplate
         /// Column name for given position naming.
         /// </summary>
         /// <param name="col">Internal column index starting with 0.</param>
-        /// <param name="format">A current format</param>
+        /// <param name="format">A current format.</param>
         /// <returns>
         /// Column name string
         /// </returns>
@@ -35,8 +35,18 @@ namespace Microplate
         /// Convert position name to coordinates.
         /// </summary>
         /// <param name="name">The name.</param>
-        /// <param name="format">A current format</param>
+        /// <param name="format">A current format.</param>
         /// <returns><see cref="Point"/> of given coordinates</returns>
         Point GetCoords(string name, Format format);
+
+        /// <summary>
+        /// Determines whether the specified name is valid position.
+        /// </summary>
+        /// <param name="name">The position name.</param>
+        /// <param name="format">A current format.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified name is valid position; otherwise, <c>false</c>.
+        /// </returns>
+        bool IsValid(string name, Format format);
     }
 }

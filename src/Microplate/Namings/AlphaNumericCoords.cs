@@ -55,7 +55,7 @@ namespace Microplate.Namings
                              : (col + 1).ToString(CultureInfo.InvariantCulture);
         }
 
-        readonly Regex coords = new Regex(@"^([a-zA-Z]+)[, ]*(\d+)$", RegexOptions.Compiled | RegexOptions.Singleline);
+        static readonly Regex CoordsRegex = new Regex(@"^([a-zA-Z]+)[, ]*(\d+)$", RegexOptions.Compiled | RegexOptions.Singleline);
 
         /// <summary>
         /// Convert position name to coordinates.
@@ -72,7 +72,7 @@ namespace Microplate.Namings
         {
             var point = new Point(0, 0);
 
-            var matches = coords.Matches(name.Trim().ToUpper());
+            var matches = CoordsRegex.Matches(name.Trim().ToUpper());
             if (matches.Count > 0)
             {
                 foreach (Match match in matches)
@@ -97,6 +97,19 @@ namespace Microplate.Namings
                 }
             }
             return point;
+        }
+
+        /// <summary>
+        /// Determines whether the specified name is valid position.
+        /// </summary>
+        /// <param name="name">The position name.</param>
+        /// <param name="format">A current format.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified name is valid position; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsValid(string name, Format format)
+        {
+            return CoordsRegex.IsMatch(name);
         }
     }
 }
