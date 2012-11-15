@@ -34,6 +34,24 @@ namespace MicroplateSpecs
             }
         }
 
+        class SomeOtherData : IData
+        {
+            public void GetObjectData(SerializationInfo info, StreamingContext context)
+            {
+                throw new NotImplementedException();
+            }
+
+            public Image ToImage()
+            {
+                throw new NotImplementedException();
+            }
+
+            public Control ToControl()
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         class Dummy
         {
              
@@ -52,6 +70,30 @@ namespace MicroplateSpecs
             it["height should be 8"] = () => plate.Height.should_be(8);
         }
 
+        void given_valid_plate_object()
+        {
+            var typeMock = new Mock<IPlateType>();
+            typeMock.SetupGet(format => format.Format).Returns(new Format(8, 12, PositionNamings.Default));
+            before = () => plate = new Plate(typeMock.Object, typeof(SomeData));
+
+            context["when using copy constructor"] = () =>
+            {
+                it["should copy the plate with no problem"] = () => (new Plate(plate)).should_not_be_null();
+                it["should not be the same"] = () => (new Plate(plate)).should_not_be_same(plate);
+                it["copy should have the same Type"] = () => (new Plate(plate)).Type.should_be_same(plate.Type);
+                it["copy should have the same DataType"] = () => (new Plate(plate)).DataType.should_be_same(plate.DataType);
+                it["copy should have the same Content"] = () => (new Plate(plate)).Content.should_be_same(plate.Content);
+            };
+
+            context["when converting to typed plate"] = () =>
+            {
+                it["should convert the plate if the type is correct"] = () => Plate.ToPlate<SomeData>(plate).should_not_be_null();
+                it["should fail if type is wrong"] = expect<ArgumentException>(() => Plate.ToPlate<SomeOtherData>(plate));
+                it["copy should have the same Type"] = () => (Plate.ToPlate<SomeData>(plate)).Type.should_be_same(plate.Type);
+                it["copy should have the same DataType"] = () => (Plate.ToPlate<SomeData>(plate)).DataType.should_be_same(plate.DataType);
+                it["copy should have the same Content"] = () => (Plate.ToPlate<SomeData>(plate)).Content.should_be_same(plate.Content);
+            };
+        }
 
         private Mock<IPlateType> failMock;
 

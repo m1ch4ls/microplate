@@ -10,7 +10,7 @@ namespace Microplate
 {
     public class Plate : IEnumerable<IData>
     {
-        protected internal readonly IData[] Content;
+        public readonly IData[] Content;
 
         /// <summary>
         /// Proxy to <see cref="Format.Width"/>
