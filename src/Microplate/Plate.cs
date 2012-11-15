@@ -56,10 +56,20 @@ namespace Microplate
 
         public readonly Type DataType;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Plate"/> class. Creates shallow copy of the plate.
+        /// </summary>
+        /// <param name="plate">The plate.</param>
         public Plate(Plate plate) : this(plate.Type, plate.DataType, plate.Content)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Plate"/> class.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="dataType">Type of the data.</param>
+        /// <param name="content">The content.</param>
         public Plate(IPlateType type, Type dataType, IData[] content = null)
         {
             if (dataType.GetInterfaces().Length == 0 || dataType.GetInterfaces().All(x => x != typeof(IData)))
