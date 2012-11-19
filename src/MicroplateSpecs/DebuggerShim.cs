@@ -1,15 +1,16 @@
 ﻿using System.Linq;
 using System.Reflection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSpec;
 using NSpec.Domain;
 
-//[TestFixture]
+[TestClass]
 public class DebuggerShim
 {
-    //[Test]
+    [TestMethod]
     public void debug()
     {
-        var tagOrClassName = "describe_world";
+        var tagOrClassName = "describe_Plate";
 
         var invocation = new RunnerInvocation(Assembly.GetExecutingAssembly().Location, tagOrClassName);
 
