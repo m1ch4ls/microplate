@@ -11,6 +11,7 @@ namespace Microplate.Namings
     ///                                                                     <cref>GetCoords</cref>
     ///                                                                   </see>.
     /// </summary>
+    [Serializable]
     public class NumericDirect : NumericCoords
     {
         /// <summary>

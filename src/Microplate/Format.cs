@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Microplate
@@ -9,6 +10,7 @@ namespace Microplate
     /// <summary>
     /// Container for plate format parameters. Used in <see cref="Format"/>.
     /// </summary>
+    [Serializable]
     public struct Format
     {
         /// <summary>

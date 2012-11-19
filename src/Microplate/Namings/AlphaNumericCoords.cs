@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace Microplate.Namings
 {
+    [Serializable]
     public class AlphaNumericCoords : IPositionNaming
     {
         private const string LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

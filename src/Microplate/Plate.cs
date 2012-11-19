@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using Microplate.Data;
 
 namespace Microplate
 {
-    public class Plate : IEnumerable<IData>
+    [Serializable]
+    public class Plate : IEnumerable<IData>, ISerializable
     {
         public readonly IData[] Content;
 
@@ -84,7 +86,15 @@ namespace Microplate
                 throw new ArgumentException("Must contain valid plate format", "type");
             }
 
-            if (content == null) Content = new IData[type.Format.Width * type.Format.Height];
+            if (content == null)
+            {
+                Content = new IData[type.Format.Width * type.Format.Height];
+                // fill in Content
+                for (int i = 0; i < Content.Length; i++)
+                {
+                    Content[i] = (IData)Activator.CreateInstance(dataType);
+                }
+            }
             else
             {
                 if (content.Length != type.Format.Width * type.Format.Height)
@@ -95,6 +105,35 @@ namespace Microplate
             Created = LastChanged = DateTime.Now;
 
             Type = type;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Plate"/> class.
+        /// </summary>
+        /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> from which to create a new instance.</param>
+        /// <param name="context">The source (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+        public Plate(SerializationInfo info, StreamingContext context)
+        {
+            Content = (IData[]) info.GetValue("Content", typeof (IData[]));
+            Type = (IPlateType) info.GetValue("Type", typeof (IPlateType));
+            Created = info.GetDateTime("Created");
+            LastChanged = info.GetDateTime("LastChanged");
+            DataType = (Type) info.GetValue("DataType", typeof(Type));
+        }
+
+        /// <summary>
+        /// Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
+        /// </summary>
+        /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data.</param>
+        /// <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
+        /// <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Content", Content);
+            info.AddValue("Type", Type);
+            info.AddValue("Created", Created);
+            info.AddValue("LastChanged", LastChanged);
+            info.AddValue("DataType", DataType);
         }
 
         /// <summary>
@@ -202,6 +241,7 @@ namespace Microplate
         }
     }
 
+    [Serializable]
     public class Plate<T> : Plate, IEnumerable<T> where T : IData
     {
         public Plate(IPlateType type) : base(type, typeof(T))
@@ -209,6 +249,10 @@ namespace Microplate
         }
 
         public Plate(Plate plate) : base(plate.Type, typeof(T), plate.Content)
+        {
+        }
+
+        public Plate(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
 

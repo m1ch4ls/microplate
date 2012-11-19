@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microplate", "microplate\Microplate.csproj", "{03BE718F-C731-43AB-8715-DEB69445CE6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microplate", "Microplate\Microplate.csproj", "{03BE718F-C731-43AB-8715-DEB69445CE6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroplateSpecs", "MicroplateSpecs\MicroplateSpecs.csproj", "{2B059698-B365-4FA2-A686-C8EA43B10194}"
 EndProject

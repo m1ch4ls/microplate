@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Microplate.Namings
 {
+    [Serializable]
     public class AlphaNumericDirect : AlphaNumericCoords
     {
         

@@ -13,6 +13,14 @@ namespace Microplate.Data
     {
         public String Value { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimpleString"/> class.
+        /// </summary>
+        public SimpleString()
+        {
+            Value = String.Empty;
+        }
+
         public Image ToImage()
         {
             throw new System.NotImplementedException();

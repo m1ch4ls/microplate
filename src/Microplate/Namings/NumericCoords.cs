@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace Microplate.Namings
 {
+    [Serializable]
     public class NumericCoords : IPositionNaming
     {
         /// <summary>

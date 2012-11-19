@@ -48,6 +48,7 @@
     <Compile Include="Data\RNA.cs" />
     <Compile Include="Data\RT.cs" />
     <Compile Include="Data\Sequencing.cs" />
+    <Compile Include="Data\SimpleString.cs" />
     <Compile Include="Formats.cs" />
     <Compile Include="InvalidPosition.cs" />
     <Compile Include="Namings\AlphaNumericCoords.cs" />
