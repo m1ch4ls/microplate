@@ -31,6 +31,16 @@ namespace Microplate.Data
             return new TextBox() { Text = Value };
         }
 
+        public override string ToString()
+        {
+            return Value;
+        }
+
+        public void FromString(string s)
+        {
+            Value = s;
+        }
+
         /// <summary>
         /// Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
         /// </summary>

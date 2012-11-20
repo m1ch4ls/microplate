@@ -2,15 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 using Microplate.Data;
 
 namespace Microplate
 {
     [Serializable]
-    public class Plate : IEnumerable<IData>, ISerializable
+    public class Plate : ISerializable
     {
         public readonly IData[] Content;
 
@@ -206,30 +211,6 @@ namespace Microplate
             set { this[row + col.ToString(CultureInfo.InvariantCulture)] = value; }
         }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
-        /// </returns>
-        /// <filterpriority>1</filterpriority>
-        public IEnumerator<IData> GetEnumerator()
-        {
-            return ((IEnumerable<IData>)Content).GetEnumerator();
-        }
-
-        /// <summary>
-        /// Returns an enumerator that iterates through a collection.
-        /// </summary>
-        /// <returns>
-        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
-        /// </returns>
-        /// <filterpriority>2</filterpriority>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
         public static Plate<T> ToPlate<T>(Plate plate) where T : IData
         {
             if (typeof(T) == plate.DataType)
@@ -239,10 +220,137 @@ namespace Microplate
 
             throw new ArgumentException("Plate DataType provided doesn't match plate DataType required", "plate");
         }
+
+        public static Plate FromFile(string filename)
+        {
+            var file = File.OpenRead(filename);
+            var plate = FromStream(file);
+            file.Close();
+
+            return plate;
+        }
+
+        public static Plate FromStream(Stream stream)
+        {
+            var reader = new XmlTextReader(stream);
+            Type dataType = null;
+            IPlateType plateType = null;
+            DateTime created = DateTime.Today;
+            DateTime lastChanged = DateTime.Now;
+            var items = new List<string>();
+
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Element)
+                {
+                    if (reader.Name == "Plate")
+                    {
+                        var typeName = reader.GetAttribute("DataType");
+                        if (typeName != null) dataType = System.Type.GetType(typeName);
+                    }
+                    else if (reader.Name == "Type")
+                    {
+                        var typeName = reader.GetAttribute("FullName");
+                        if (typeName != null)
+                        {
+                            var typeType = System.Type.GetType(typeName);
+                            if (typeType != null) plateType = (IPlateType)Activator.CreateInstance(typeType);
+                        }
+
+                        if (plateType != null)
+                        {
+                            reader.Read();
+                            plateType.FromXml(reader);
+                        }
+                    }
+                    else if (reader.Name == "Content")
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.NodeType == XmlNodeType.Element && reader.Name == "Item")
+                            {
+                                items.Add(reader.ReadElementContentAsString());
+                            } else if (reader.NodeType == XmlNodeType.EndElement)
+                            {
+                                reader.ReadEndElement();
+                                break;
+                            }
+                        }
+                    } else if (reader.Name == "Created")
+                    {
+                        created = reader.ReadElementContentAsDateTime();
+                    } else if (reader.Name == "LastChanged")
+                    {
+                        lastChanged = reader.ReadElementContentAsDateTime();
+                    }
+                } else if (reader.NodeType == XmlNodeType.EndElement)
+                {
+                    if (reader.Name == "Plate")
+                    {
+                        reader.ReadEndElement();
+                        break;
+                    }
+                }
+            }
+
+            if (dataType != null && plateType != null)
+            {
+                var plate = new Plate(plateType, dataType);
+                for (int i = 0; i < plate.Content.Length; i++)
+                {
+                    plate.Content[i].FromString(items[i]);
+                }
+
+                plate.Created = created;
+                plate.LastChanged = lastChanged;
+
+                return plate;
+            }
+
+            return null;
+        }
+
+        public void Save(Stream stream)
+        {
+            var writer = new XmlTextWriter(stream, Encoding.UTF8) { Formatting = Formatting.Indented };
+            writer.WriteStartDocument();
+            writer.WriteStartElement("Plate");
+
+            writer.WriteStartAttribute("DataType");
+            writer.WriteString(DataType.FullName);
+            writer.WriteEndAttribute();
+
+            writer.WriteStartElement("Content");
+            foreach (var data in Content)
+            {
+                writer.WriteStartElement("Item");
+                writer.WriteString(data.ToString());
+                writer.WriteEndElement();
+            }
+            writer.WriteEndElement();
+
+            writer.WriteStartElement("Type");
+            writer.WriteAttributeString("FullName", Type.GetType().FullName);
+            Type.ToXml(writer);
+            writer.WriteEndElement();
+
+            writer.WriteElementString("Created", Created.ToString("o"));
+            writer.WriteElementString("LastChanged", LastChanged.ToString("o"));
+            writer.WriteEndElement();
+            writer.WriteEndDocument();
+            writer.Flush();
+        }
+
+        public void Save(string filename)
+        {
+            var file = File.Open(filename, FileMode.Create, FileAccess.Write);
+            Save(file);
+            file.Close();
+        }
     }
 
     [Serializable]
-    public class Plate<T> : Plate, IEnumerable<T> where T : IData
+    public class Plate<T> : Plate where T : IData
     {
         public Plate(IPlateType type) : base(type, typeof(T))
         {
@@ -290,30 +398,6 @@ namespace Microplate
         {
             get { return (T) base[row, col]; }
             set { base[row, col] = value; }
-        }
-
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
-        /// </returns>
-        /// <filterpriority>1</filterpriority>
-        public new IEnumerator<T> GetEnumerator()
-        {
-            return Content.Cast<T>().GetEnumerator();
-        }
-
-        /// <summary>
-        /// Returns an enumerator that iterates through a collection.
-        /// </summary>
-        /// <returns>
-        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
-        /// </returns>
-        /// <filterpriority>2</filterpriority>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }

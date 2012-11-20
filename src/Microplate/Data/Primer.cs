@@ -18,6 +18,11 @@ namespace Microplate.Data
             throw new System.NotImplementedException();
         }
 
+        public void FromString(string s)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
         /// </summary>

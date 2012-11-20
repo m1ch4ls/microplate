@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Xml;
 using Microplate.Data;
 
 namespace Microplate.Types
@@ -46,6 +48,42 @@ namespace Microplate.Types
             info.AddValue("Format", Format);
             info.AddValue("Manufacturer", Manufacturer);
             info.AddValue("Volume", Volume);
+        }
+
+        public void ToXml(XmlWriter writer)
+        {
+            writer.WriteStartElement("Meta");
+
+            writer.WriteElementString("Name", Name);
+            Format.ToXml(writer);
+            writer.WriteElementString("Manufacturer", Manufacturer);
+            writer.WriteElementString("Volume", Volume.ToString(CultureInfo.InvariantCulture));
+
+            writer.WriteEndElement();
+        }
+
+        public void FromXml(XmlReader reader)
+        {
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Element)
+                {
+                    if (reader.Name == "Name")
+                        Name = reader.ReadElementContentAsString();
+                    else if (reader.Name == "Manufacturer")
+                        Manufacturer = reader.ReadElementContentAsString();
+                    else if (reader.Name == "Volume")
+                        Volume = reader.ReadElementContentAsDecimal();
+                    else if (reader.Name == "Format")
+                        Format.FromXml(reader);
+
+                }
+                else if (reader.NodeType == XmlNodeType.EndElement && reader.Name == "Meta")
+                {
+                    reader.ReadEndElement();
+                    break;
+                }
+            }
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Xml;
 
 namespace Microplate
 {
@@ -54,6 +56,35 @@ namespace Microplate
         public bool IsValid()
         {
             return Height > 0 && Width > 0;
+        }
+
+        public void ToXml(XmlWriter writer)
+        {
+            writer.WriteStartElement("Format");
+            writer.WriteAttributeString("Width", Width.ToString(CultureInfo.InvariantCulture));
+            writer.WriteAttributeString("Height", Height.ToString(CultureInfo.InvariantCulture));
+            writer.WriteAttributeString("Name", Name);
+            writer.WriteAttributeString("PositionNaming", Array.IndexOf(PositionNamings.Defined, PositionNaming).ToString(CultureInfo.InvariantCulture));
+            writer.WriteEndElement();
+        }
+
+        public void FromXml(XmlReader reader)
+        {
+            while (reader.MoveToNextAttribute())
+            {
+                if (reader.Name == "Width")
+                    Width = reader.ReadContentAsInt();
+                else if (reader.Name == "Height")
+                    Height = reader.ReadContentAsInt();
+                else if (reader.Name == "Name")
+                    Name = reader.ReadContentAsString();
+                else if (reader.Name == "PositionNaming")
+                {
+                    var index = reader.ReadContentAsInt();
+                    if (index < PositionNamings.Defined.Length) PositionNaming = PositionNamings.Defined[index];
+                }
+            }
+            reader.MoveToElement();
         }
     }
 }

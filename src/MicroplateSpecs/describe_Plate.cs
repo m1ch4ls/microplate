@@ -32,6 +32,11 @@ namespace MicroplateSpecs
             {
                 throw new NotImplementedException();
             }
+
+            public void FromString(string s)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         class SomeOtherData : IData
@@ -47,6 +52,11 @@ namespace MicroplateSpecs
             }
 
             public Control ToControl()
+            {
+                throw new NotImplementedException();
+            }
+
+            public void FromString(string s)
             {
                 throw new NotImplementedException();
             }
@@ -125,6 +135,21 @@ namespace MicroplateSpecs
                 it["should not be the same as copy"] = () => plate.should_not_be_same(copy);
                 it["should have the same content as copy"] =
                     () => ((SimpleString)copy[1]).Value.should_be(typedPlate[1].Value);
+            };
+
+            context["when serializing to xml"] = () =>
+            {
+                before = () => plate = new Plate(new DefaultType(), typeof(SimpleString));
+
+                var stream = new MemoryStream();
+
+                it["should save to xml with no errors"] = () => { plate.Save(stream); plate.Save("tmp.xml"); };
+                it["should produce nonempty stream"] = () => stream.Length.should_be_greater_than(0);
+                it["should deserialize from xml with no errors"] = () =>
+                                                                   {
+                                                                       stream.Position = 0;
+                                                                       Plate.FromStream(stream).should_not_be_null();
+                                                                   };
             };
         }
 

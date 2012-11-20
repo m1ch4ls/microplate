@@ -17,6 +17,14 @@ namespace Microplate
 
         public static readonly AlphaNumericDirect AlphaNumericDirect = new AlphaNumericDirect();
 
+        public static readonly IPositionNaming[] Defined = new IPositionNaming[]
+                                                           {
+                                                               NumericCoords,
+                                                               AlphaNumericCoords,
+                                                               NumericDirect,
+                                                               AlphaNumericDirect
+                                                           };
+
         public static IPositionNaming Default { get { return NumericCoords; } }
     }
 }
