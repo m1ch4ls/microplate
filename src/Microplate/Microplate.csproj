@@ -44,15 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DNA.cs" />
-    <Compile Include="Data\PCR.cs" />
-    <Compile Include="Data\Primer.cs" />
-    <Compile Include="Data\RealtimePCR.cs" />
-    <Compile Include="Data\RNA.cs" />
-    <Compile Include="Data\RT.cs" />
-    <Compile Include="Data\Sequencing.cs" />
-    <Compile Include="Data\SimpleString.cs" />
     <Compile Include="Formats.cs" />
+    <None Include="Grid.cs">
+      <SubType>Component</SubType>
+    </None>
     <Compile Include="InvalidPosition.cs" />
     <Compile Include="Namings\AlphaNumericCoords.cs" />
     <Compile Include="Namings\AlphaNumericDirect.cs" />
@@ -60,8 +55,8 @@
     <Compile Include="Namings\NumericDirect.cs" />
     <Compile Include="PositionNamings.cs" />
     <Compile Include="Types\DefaultType.cs" />
+    <Compile Include="Well.cs" />
     <None Include="Design\UsageExamples.cs" />
-    <Compile Include="IData.cs" />
     <Compile Include="Format.cs" />
     <Compile Include="IPlateType.cs" />
     <Compile Include="IPositionNaming.cs" />
@@ -76,7 +71,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controls\" />
+    <Folder Include="Grid\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

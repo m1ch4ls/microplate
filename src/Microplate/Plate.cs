@@ -8,16 +8,13 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Xml;
-using System.Xml.Schema;
-using System.Xml.Serialization;
-using Microplate.Data;
 
 namespace Microplate
 {
     [Serializable]
     public class Plate : ISerializable
     {
-        public readonly IData[] Content;
+        public readonly Well[] Content;
 
         /// <summary>
         /// Proxy to <see cref="Format.Width"/>
@@ -61,13 +58,11 @@ namespace Microplate
 
         public DateTime LastChanged { get; set; }
 
-        public readonly Type DataType;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Plate"/> class. Creates shallow copy of the plate.
         /// </summary>
         /// <param name="plate">The plate.</param>
-        public Plate(Plate plate) : this(plate.Type, plate.DataType, plate.Content)
+        public Plate(Plate plate) : this(plate.Type, plate.Content)
         {
         }
 
@@ -75,17 +70,9 @@ namespace Microplate
         /// Initializes a new instance of the <see cref="Plate"/> class.
         /// </summary>
         /// <param name="type">The type.</param>
-        /// <param name="dataType">Type of the data.</param>
         /// <param name="content">The content.</param>
-        public Plate(IPlateType type, Type dataType, IData[] content = null)
+        public Plate(IPlateType type, Well[] content = null)
         {
-            if (dataType.GetInterfaces().Length == 0 || dataType.GetInterfaces().All(x => x != typeof(IData)))
-            {
-                throw new ArgumentException("Must implement IData interface", "dataType");
-            }
-
-            DataType = dataType;
-
             if (type == null || !type.Format.IsValid())
             {
                 throw new ArgumentException("Must contain valid plate format", "type");
@@ -93,11 +80,11 @@ namespace Microplate
 
             if (content == null)
             {
-                Content = new IData[type.Format.Width * type.Format.Height];
+                Content = new Well[type.Format.Width * type.Format.Height];
                 // fill in Content
                 for (int i = 0; i < Content.Length; i++)
                 {
-                    Content[i] = (IData)Activator.CreateInstance(dataType);
+                    Content[i] = new Well(i / type.Format.Width, i % type.Format.Width);
                 }
             }
             else
@@ -119,11 +106,10 @@ namespace Microplate
         /// <param name="context">The source (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization.</param>
         public Plate(SerializationInfo info, StreamingContext context)
         {
-            Content = (IData[]) info.GetValue("Content", typeof (IData[]));
+            Content = (Well[])info.GetValue("Content", typeof(Well[]));
             Type = (IPlateType) info.GetValue("Type", typeof (IPlateType));
             Created = info.GetDateTime("Created");
             LastChanged = info.GetDateTime("LastChanged");
-            DataType = (Type) info.GetValue("DataType", typeof(Type));
         }
 
         /// <summary>
@@ -138,13 +124,12 @@ namespace Microplate
             info.AddValue("Type", Type);
             info.AddValue("Created", Created);
             info.AddValue("LastChanged", LastChanged);
-            info.AddValue("DataType", DataType);
         }
 
         /// <summary>
         /// Indexed by coordinates.
         /// </summary>
-        public IData this[int row, int col]
+        public Well this[int row, int col]
         {
             get { return Content[row*Width + col]; }
             set { Content[row*Width + col] = value; }
@@ -153,7 +138,7 @@ namespace Microplate
         /// <summary>
         /// Indexed by alphanumeric position.
         /// </summary>
-        public IData this[string pos]
+        public Well this[string pos]
         {
             get
             {
@@ -179,7 +164,7 @@ namespace Microplate
         /// <summary>
         /// Indexed by numeric position.
         /// </summary>
-        public IData this[int pos]
+        public Well this[int pos]
         {
             get
             {
@@ -205,20 +190,10 @@ namespace Microplate
         /// <summary>
         /// Mixed indexing, by letter and number.
         /// </summary>
-        public IData this[string row, int col]
+        public Well this[string row, int col]
         {
             get { return this[row + col.ToString(CultureInfo.InvariantCulture)]; }
             set { this[row + col.ToString(CultureInfo.InvariantCulture)] = value; }
-        }
-
-        public static Plate<T> ToPlate<T>(Plate plate) where T : IData
-        {
-            if (typeof(T) == plate.DataType)
-            {
-                return new Plate<T>(plate);
-            }
-
-            throw new ArgumentException("Plate DataType provided doesn't match plate DataType required", "plate");
         }
 
         public static Plate FromFile(string filename)
@@ -233,7 +208,6 @@ namespace Microplate
         public static Plate FromStream(Stream stream)
         {
             var reader = new XmlTextReader(stream);
-            Type dataType = null;
             IPlateType plateType = null;
             DateTime created = DateTime.Today;
             DateTime lastChanged = DateTime.Now;
@@ -243,12 +217,7 @@ namespace Microplate
             {
                 if (reader.NodeType == XmlNodeType.Element)
                 {
-                    if (reader.Name == "Plate")
-                    {
-                        var typeName = reader.GetAttribute("DataType");
-                        if (typeName != null) dataType = System.Type.GetType(typeName);
-                    }
-                    else if (reader.Name == "Type")
+                    if (reader.Name == "Type")
                     {
                         var typeName = reader.GetAttribute("FullName");
                         if (typeName != null)
@@ -262,12 +231,11 @@ namespace Microplate
                             reader.Read();
                             plateType.FromXml(reader);
                         }
-                    }
-                    else if (reader.Name == "Content")
+                    } else if (reader.Name == "Content")
                     {
                         while (reader.Read())
                         {
-                            if (reader.NodeType == XmlNodeType.Element && reader.Name == "Item")
+                            if (reader.NodeType == XmlNodeType.Element && reader.Name == "Well")
                             {
                                 items.Add(reader.ReadElementContentAsString());
                             } else if (reader.NodeType == XmlNodeType.EndElement)
@@ -293,12 +261,13 @@ namespace Microplate
                 }
             }
 
-            if (dataType != null && plateType != null)
+            if (plateType != null)
             {
-                var plate = new Plate(plateType, dataType);
+                var plate = new Plate(plateType);
+                var format = plate.Type.Format;
                 for (int i = 0; i < plate.Content.Length; i++)
                 {
-                    plate.Content[i].FromString(items[i]);
+                    plate.Content[i] = new Well(items[i], i / format.Width, i % format.Width);
                 }
 
                 plate.Created = created;
@@ -316,15 +285,11 @@ namespace Microplate
             writer.WriteStartDocument();
             writer.WriteStartElement("Plate");
 
-            writer.WriteStartAttribute("DataType");
-            writer.WriteString(DataType.FullName);
-            writer.WriteEndAttribute();
-
             writer.WriteStartElement("Content");
             foreach (var data in Content)
             {
-                writer.WriteStartElement("Item");
-                writer.WriteString(data.ToString());
+                writer.WriteStartElement("Well");
+                writer.WriteString(data.Value);
                 writer.WriteEndElement();
             }
             writer.WriteEndElement();
@@ -346,58 +311,6 @@ namespace Microplate
             var file = File.Open(filename, FileMode.Create, FileAccess.Write);
             Save(file);
             file.Close();
-        }
-    }
-
-    [Serializable]
-    public class Plate<T> : Plate where T : IData
-    {
-        public Plate(IPlateType type) : base(type, typeof(T))
-        {
-        }
-
-        public Plate(Plate plate) : base(plate.Type, typeof(T), plate.Content)
-        {
-        }
-
-        public Plate(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
-
-        /// <summary>
-        /// Indexed by coordinates.
-        /// </summary>
-        public new T this[int row, int col]
-        {
-            get { return (T)base[row, col]; }
-            set { base[row, col] = value; }
-        }
-
-        /// <summary>
-        /// Indexed by alphanumeric position.
-        /// </summary>
-        public new T this[string pos]
-        {
-            get { return (T) base[pos]; }
-            set { base[pos] = value; }
-        }
-
-        /// <summary>
-        /// Indexed by numeric position.
-        /// </summary>
-        public new T this[int pos]
-        {
-            get { return (T)base[pos]; }
-            set { base[pos] = value; }
-        }
-
-        /// <summary>
-        /// Mixed indexing, by letter and number.
-        /// </summary>
-        public new T this[string row, int col]
-        {
-            get { return (T) base[row, col]; }
-            set { base[row, col] = value; }
         }
     }
 }

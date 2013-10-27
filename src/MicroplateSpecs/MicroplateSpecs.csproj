@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="describe_Plate.cs" />
+    <Compile Include="describe_Well.cs" />
     <Compile Include="describe_world.cs" />
     <Compile Include="DebuggerShim.cs" />
     <Compile Include="Namings\describe_AlphaNumericCoords.cs" />
