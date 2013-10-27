@@ -21,16 +21,6 @@ namespace Microplate.Data
             Value = String.Empty;
         }
 
-        public Image ToImage()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Control ToControl()
-        {
-            return new TextBox() { Text = Value };
-        }
-
         public override string ToString()
         {
             return Value;

@@ -23,16 +23,6 @@ namespace MicroplateSpecs
                 throw new NotImplementedException();
             }
 
-            public Image ToImage()
-            {
-                throw new NotImplementedException();
-            }
-
-            public Control ToControl()
-            {
-                throw new NotImplementedException();
-            }
-
             public void FromString(string s)
             {
                 throw new NotImplementedException();
@@ -42,16 +32,6 @@ namespace MicroplateSpecs
         class SomeOtherData : IData
         {
             public void GetObjectData(SerializationInfo info, StreamingContext context)
-            {
-                throw new NotImplementedException();
-            }
-
-            public Image ToImage()
-            {
-                throw new NotImplementedException();
-            }
-
-            public Control ToControl()
             {
                 throw new NotImplementedException();
             }

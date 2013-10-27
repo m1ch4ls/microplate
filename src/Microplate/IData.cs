@@ -12,10 +12,6 @@ namespace Microplate
     {
         string ToString();
 
-        Image ToImage();
-
-        Control ToControl();
-
         void FromString(string s);
     }
 }
