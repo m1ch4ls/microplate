@@ -36,8 +36,9 @@ namespace Microplate.Namings
         /// 
         /// Example:
         /// format(8, 12)
-        /// "13" -> Point(1,1)
-        /// "52" -> Point(3,3)
+        /// "12" -> Point(0,11)
+        /// "13" -> Point(1,0)
+        /// "52" -> Point(4,3)
         /// </summary>
         /// <param name="pos">The position.</param>
         /// <param name="format">Arbitrary format of the <see cref="Plate"/></param>
